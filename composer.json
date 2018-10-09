@@ -1,0 +1,29 @@
+{
+    "name": "aphonix/pay",
+    "description": "专注 Alipay 和 WeChat 的支付扩展包",
+    "keywords": ["alipay", "wechat", "pay"],
+    "type": "library",
+    "support": {
+        "source": "https://github.com/aphonix/pay"
+    },
+    "require": {
+        "php": ">=7.0",
+        "ext-openssl": "*",
+        "ext-simplexml":"*",
+        "aphonix/supports": "^1.0",
+        "monolog/monolog": "^1.23",
+        "symfony/http-foundation": "^3.0|^4.0"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "aphonix",
+            "email": "ibeach@yeah.net"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Aphonix\\Pay\\": "src"
+        }
+    }
+}
