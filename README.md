@@ -89,40 +89,40 @@ QQ交流群：690027516
 - find(array/string $order)  
 说明：查找订单接口  
 参数：`$order` 为 `string` 类型时，请传入系统订单号，对应支付宝或微信中的 `out_trade_no`； `array` 类型时，参数请参考支付宝或微信官方文档。  
-返回：查询成功，返回 `Yansongda\Supports\Collection` 实例，可以通过 `$colletion->xxx` 或 `$collection['xxx']` 访问服务器返回的数据。  
+返回：查询成功，返回 `Aphonix\Supports\Collection` 实例，可以通过 `$colletion->xxx` 或 `$collection['xxx']` 访问服务器返回的数据。  
 异常：`GatewayException` 或 `InvalidSignException`  
 
 - refund(array $order)  
 说明：退款接口  
 参数：`$order` 数组格式，退款参数。  
-返回：退款成功，返回 `Yansongda\Supports\Collection` 实例，可以通过 `$colletion->xxx` 或 `$collection['xxx']` 访问服务器返回的数据。  
+返回：退款成功，返回 `Aphonix\Supports\Collection` 实例，可以通过 `$colletion->xxx` 或 `$collection['xxx']` 访问服务器返回的数据。  
 异常：`GatewayException` 或 `InvalidSignException`
 
 - cancel(array/string $order)  
 说明：取消订单接口  
 参数：`$order` 为 `string` 类型时，请传入系统订单号，对应支付宝或微信中的 `out_trade_no`； `array` 类型时，参数请参考支付宝或微信官方文档。    
-返回：取消成功，返回 `Yansongda\Supports\Collection` 实例，可以通过 `$colletion->xxx` 或 `$collection['xxx']` 访问服务器返回的数据。  
+返回：取消成功，返回 `Aphonix\Supports\Collection` 实例，可以通过 `$colletion->xxx` 或 `$collection['xxx']` 访问服务器返回的数据。  
 异常：`GatewayException` 或 `InvalidSignException`
 
 - close(array/string $order)  
 说明：关闭订单接口  
 参数：`$order` 为 `string` 类型时，请传入系统订单号，对应支付宝或微信中的 `out_trade_no`； `array` 类型时，参数请参考支付宝或微信官方文档。  
-返回：关闭成功，返回 `Yansongda\Supports\Collection` 实例，可以通过 `$colletion->xxx` 或 `$collection['xxx']` 访问服务器返回的数据。  
+返回：关闭成功，返回 `Aphonix\Supports\Collection` 实例，可以通过 `$colletion->xxx` 或 `$collection['xxx']` 访问服务器返回的数据。  
 异常：`GatewayException` 或 `InvalidSignException`  
 
 - verify()  
 说明：验证服务器返回消息是否合法  
-返回：验证成功，返回 `Yansongda\Supports\Collection` 实例，可以通过 `$colletion->xxx` 或 `$collection['xxx']` 访问服务器返回的数据。  
+返回：验证成功，返回 `Aphonix\Supports\Collection` 实例，可以通过 `$colletion->xxx` 或 `$collection['xxx']` 访问服务器返回的数据。  
 异常：`GatewayException` 或 `InvalidSignException`  
 
 - PAYMETHOD(array $order)  
 说明：进行支付；具体支付方法名称请参考「支持的支付方法」一栏  
-返回：成功，返回 `Yansongda\Supports\Collection` 实例，可以通过 `$colletion->xxx` 或 `$collection['xxx']` 访问服务器返回的数据或 `Symfony\Component\HttpFoundation\Response` 实例，可通过 `return $response->send()`(laravel 框架中直接 `return $response`) 返回，具体请参考文档。  
+返回：成功，返回 `Aphonix\Supports\Collection` 实例，可以通过 `$colletion->xxx` 或 `$collection['xxx']` 访问服务器返回的数据或 `Symfony\Component\HttpFoundation\Response` 实例，可通过 `return $response->send()`(laravel 框架中直接 `return $response`) 返回，具体请参考文档。  
 异常：`GatewayException` 或 `InvalidSignException`  
 
 ## 安装
 ```shell
-composer require yansongda/pay -vvv
+composer require aphonix/pay -vvv
 ```
 
 ## 使用说明
@@ -133,8 +133,8 @@ composer require yansongda/pay -vvv
 
 namespace App\Http\Controllers;
 
-use Yansongda\Pay\Pay;
-use Yansongda\Pay\Log;
+use Aphonix\Pay\Pay;
+use Aphonix\Pay\Log;
 
 class PayController extends Controller
 {
@@ -204,8 +204,8 @@ class PayController extends Controller
 
 namespace App\Http\Controllers;
 
-use Yansongda\Pay\Pay;
-use Yansongda\Pay\Log;
+use Aphonix\Pay\Pay;
+use Aphonix\Pay\Log;
 
 class PayController extends Controller
 {
@@ -268,10 +268,10 @@ class PayController extends Controller
 
 ### 所有异常
 
-* Yansongda\Pay\Exceptions\InvalidGatewayException ，表示使用了除本 SDK 支持的支付网关。
-* Yansongda\Pay\Exceptions\InvalidSignException ，表示验签失败。
-* Yansongda\Pay\Exceptions\InvalidConfigException ，表示缺少配置参数，如，`ali_public_key`, `private_key` 等。
-* Yansongda\Pay\Exceptions\GatewayException ，表示支付宝/微信服务器返回的数据非正常结果，例如，参数错误，对账单不存在等。
+* Aphonix\Pay\Exceptions\InvalidGatewayException ，表示使用了除本 SDK 支持的支付网关。
+* Aphonix\Pay\Exceptions\InvalidSignException ，表示验签失败。
+* Aphonix\Pay\Exceptions\InvalidConfigException ，表示缺少配置参数，如，`ali_public_key`, `private_key` 等。
+* Aphonix\Pay\Exceptions\GatewayException ，表示支付宝/微信服务器返回的数据非正常结果，例如，参数错误，对账单不存在等。
 
 
 ## 代码贡献
