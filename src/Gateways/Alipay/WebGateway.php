@@ -30,9 +30,9 @@ class WebGateway implements GatewayInterface
      * Pay an order.
      *
      * @param string $endpoint
-     * @param array  $payload
-     *
+     * @param array $payload
      * @return Response
+     * @throws \Aphonix\Pay\Exceptions\InvalidConfigException
      */
     public function pay($endpoint, array $payload): Response
     {

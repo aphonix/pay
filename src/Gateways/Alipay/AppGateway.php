@@ -33,6 +33,7 @@ class AppGateway implements GatewayInterface
      * @param array  $payload
      *
      * @return Response
+     * @throws \Aphonix\Pay\Exceptions\InvalidConfigException
      */
     public function pay($endpoint, array $payload): Response
     {

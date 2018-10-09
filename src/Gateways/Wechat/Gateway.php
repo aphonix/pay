@@ -57,8 +57,10 @@ abstract class Gateway implements GatewayInterface
      *
      * @param string $endpoint
      * @param array  $payload
-     *
      * @return Collection
+     * @throws \Aphonix\Pay\Exceptions\GatewayException
+     * @throws \Aphonix\Pay\Exceptions\InvalidArgumentException
+     * @throws \Aphonix\Pay\Exceptions\InvalidSignException
      */
     protected function preOrder($endpoint, $payload): Collection
     {

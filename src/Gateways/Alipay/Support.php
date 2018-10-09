@@ -58,6 +58,9 @@ class Support
      * @param string $publicKey
      *
      * @return Collection
+     * @throws GatewayException
+     * @throws InvalidConfigException
+     * @throws InvalidSignException
      */
     public static function requestApi(array $data, $publicKey): Collection
     {
@@ -92,10 +95,10 @@ class Support
     /**
      * Generate sign.
      *
-     * @param array  $parmas
+     * @param array $parmas
      * @param string $privateKey
-     *
      * @return string
+     * @throws InvalidConfigException
      */
     public static function generateSign(array $parmas, $privateKey = null): string
     {
@@ -123,8 +126,8 @@ class Support
      * @param string      $publicKey
      * @param bool        $sync
      * @param string|null $sign
-     *
      * @return bool
+     * @throws InvalidConfigException
      */
     public static function verifySign(array $data, $publicKey = null, $sync = false, $sign = null): bool
     {

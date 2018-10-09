@@ -60,6 +60,9 @@ class Support
      * @param array       $cert
      *
      * @return Collection
+     * @throws GatewayException
+     * @throws InvalidArgumentException
+     * @throws InvalidSignException
      */
     public static function requestApi($endpoint, $data, $key = null, $cert = []): Collection
     {
@@ -97,6 +100,7 @@ class Support
      * @param \Aphonix\Supports\Config $config
      *
      * @return array
+     * @throws InvalidArgumentException
      */
     public static function filterPayload($payload, $order, $config, $preserveNotifyUrl = false)
     {
@@ -124,8 +128,8 @@ class Support
      * Generate wechat sign.
      *
      * @param array $data
-     *
      * @return string
+     * @throws InvalidArgumentException
      */
     public static function generateSign($data, $key = null): string
     {
@@ -175,8 +179,8 @@ class Support
      * Convert array to xml.
      *
      * @param array $data
-     *
      * @return string
+     * @throws InvalidArgumentException
      */
     public static function toXml($data): string
     {
@@ -198,8 +202,8 @@ class Support
      * Convert xml to array.
      *
      * @param string $xml
-     *
      * @return array
+     * @throws InvalidArgumentException
      */
     public static function fromXml($xml): array
     {

@@ -73,9 +73,9 @@ class Alipay implements GatewayApplicationInterface
      * Pay an order.
      *
      * @param string $gateway
-     * @param array  $params
-     *
-     * @return Response|Collection
+     * @param array $params
+     * @return Collection|Response
+     * @throws InvalidGatewayException
      */
     public function pay($gateway, $params = [])
     {
@@ -91,9 +91,13 @@ class Alipay implements GatewayApplicationInterface
     }
 
     /**
-     * Verfiy sign.
+     * Verify sign.
      *
+     * @param null $content
+     * @param bool $refund
      * @return Collection
+     * @throws InvalidSignException
+     * @throws \Aphonix\Pay\Exceptions\InvalidConfigException
      */
     public function verify($content = null, $refund = false): Collection
     {
@@ -117,10 +121,12 @@ class Alipay implements GatewayApplicationInterface
     /**
      * Query an order.
      *
-     * @param string|array $order
-     * @param bool         $refund
-     *
+     * @param array|string $order
+     * @param bool $refund
      * @return Collection
+     * @throws InvalidSignException
+     * @throws \Aphonix\Pay\Exceptions\GatewayException
+     * @throws \Aphonix\Pay\Exceptions\InvalidConfigException
      */
     public function find($order, $refund = false): Collection
     {
@@ -137,8 +143,10 @@ class Alipay implements GatewayApplicationInterface
      * Refund an order.
      *
      * @param array $order
-     *
      * @return Collection
+     * @throws InvalidSignException
+     * @throws \Aphonix\Pay\Exceptions\GatewayException
+     * @throws \Aphonix\Pay\Exceptions\InvalidConfigException
      */
     public function refund($order): Collection
     {
@@ -155,8 +163,10 @@ class Alipay implements GatewayApplicationInterface
      * Cancel an order.
      *
      * @param string|array $order
-     *
      * @return Collection
+     * @throws InvalidSignException
+     * @throws \Aphonix\Pay\Exceptions\GatewayException
+     * @throws \Aphonix\Pay\Exceptions\InvalidConfigException
      */
     public function cancel($order): Collection
     {
@@ -173,8 +183,10 @@ class Alipay implements GatewayApplicationInterface
      * Close an order.
      *
      * @param string|array $order
-     *
      * @return Collection
+     * @throws InvalidSignException
+     * @throws \Aphonix\Pay\Exceptions\GatewayException
+     * @throws \Aphonix\Pay\Exceptions\InvalidConfigException
      */
     public function close($order): Collection
     {
@@ -191,8 +203,10 @@ class Alipay implements GatewayApplicationInterface
      * Download bill.
      *
      * @param string|array $bill
-     *
      * @return string
+     * @throws InvalidSignException
+     * @throws \Aphonix\Pay\Exceptions\GatewayException
+     * @throws \Aphonix\Pay\Exceptions\InvalidConfigException
      */
     public function download($bill): string
     {
@@ -220,9 +234,9 @@ class Alipay implements GatewayApplicationInterface
     /**
      * Make pay gateway.
      *
-     * @param string $gateway
-     *
-     * @return Response|Collection
+     * @param $gateway
+     * @return Collection|Response
+     * @throws InvalidGatewayException
      */
     protected function makePay($gateway)
     {
@@ -238,10 +252,10 @@ class Alipay implements GatewayApplicationInterface
     /**
      * Magic pay.
      *
-     * @param string $method
-     * @param array  $params
-     *
-     * @return Response|Collection
+     * @param $method
+     * @param $params
+     * @return Collection|Response
+     * @throws InvalidGatewayException
      */
     public function __call($method, $params)
     {

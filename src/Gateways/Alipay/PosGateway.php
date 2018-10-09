@@ -33,6 +33,9 @@ class PosGateway implements GatewayInterface
      * @param array  $payload
      *
      * @return Collection
+     * @throws \Aphonix\Pay\Exceptions\GatewayException
+     * @throws \Aphonix\Pay\Exceptions\InvalidConfigException
+     * @throws \Aphonix\Pay\Exceptions\InvalidSignException
      */
     public function pay($endpoint, array $payload): Collection
     {

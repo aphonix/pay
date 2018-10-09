@@ -9,10 +9,12 @@ use Aphonix\Pay\Contracts\GatewayApplicationInterface;
 use Aphonix\Pay\Exceptions\InvalidGatewayException;
 use Aphonix\Supports\Config;
 use Aphonix\Supports\Str;
+use Aphonix\Pay\Gateways\Alipay;
+use Aphonix\Pay\Gateways\Wechat;
 
 /**
- * @method static \Aphonix\Pay\Gateways\Alipay alipay(array $config) 支付宝
- * @method static \Aphonix\Pay\Gateways\Wechat wechat(array $config) 微信
+ * @method static Alipay alipay(array $config) 支付宝
+ * @method static Wechat wechat(array $config) 微信
  */
 class Pay
 {
@@ -35,16 +37,15 @@ class Pay
 
     /**
      * Create a instance.
-     *
-     * @param string $method
-     *
+     * @param $method
      * @return GatewayApplicationInterface
+     * @throws InvalidGatewayException
      */
     protected function create($method)
     {
         !$this->config->has('log.file') ?: $this->registeLog();
 
-        $gateway = __NAMESPACE__.'\\Gateways\\'.Str::studly($method);
+        $gateway = __NAMESPACE__ . '\\Gateways\\' . Str::studly($method);
 
         if (class_exists($gateway)) {
             return self::make($gateway);
@@ -55,10 +56,9 @@ class Pay
 
     /**
      * Make a gateway.
-     *
-     * @param string $gateway
-     *
-     * @return GatewayApplicationInterface
+     * @param $gateway
+     * @return mixed
+     * @throws InvalidGatewayException
      */
     protected function make($gateway)
     {
@@ -72,9 +72,8 @@ class Pay
     }
 
     /**
-     * Registe log service.
-     *
-     * @author yansongda <me@yansongda.cn>
+     * Register log service.
+     * @throws \Exception
      */
     protected function registeLog()
     {
@@ -93,10 +92,10 @@ class Pay
     /**
      * Magic static call.
      *
-     * @param string $method
-     * @param array  $params
-     *
+     * @param $method
+     * @param $params
      * @return GatewayApplicationInterface
+     * @throws InvalidGatewayException
      */
     public static function __callStatic($method, $params)
     {

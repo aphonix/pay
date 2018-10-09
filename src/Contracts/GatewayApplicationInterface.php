@@ -2,15 +2,17 @@
 
 namespace Aphonix\Pay\Contracts;
 
+use Aphonix\Supports\Collection;
+use Symfony\Component\HttpFoundation\Response;
+
 interface GatewayApplicationInterface
 {
     /**
      * To pay.
      *
-     * @param string $gateway
-     * @param array  $params
-     *
-     * @return Aphonix\Supports\Collection|Symfony\Component\HttpFoundation\Response
+     * @param $gateway
+     * @param $params
+     * @return Collection|Response
      */
     public function pay($gateway, $params);
 
@@ -20,8 +22,9 @@ interface GatewayApplicationInterface
      * @param string|array $order
      * @param bool         $refund
      *
-     * @return Aphonix\Supports\Collection
+     * @return Collection
      */
+
     public function find($order, $refund);
 
     /**
@@ -29,7 +32,7 @@ interface GatewayApplicationInterface
      *
      * @param array $order
      *
-     * @return Aphonix\Supports\Collection
+     * @return Collection
      */
     public function refund($order);
 
@@ -38,7 +41,7 @@ interface GatewayApplicationInterface
      *
      * @param string|array $order
      *
-     * @return Aphonix\Supports\Collection
+     * @return Collection
      */
     public function cancel($order);
 
@@ -47,7 +50,7 @@ interface GatewayApplicationInterface
      *
      * @param string|array $order
      *
-     * @return Aphonix\Supports\Collection
+     * @return Collection
      */
     public function close($order);
 
@@ -57,14 +60,14 @@ interface GatewayApplicationInterface
      * @param string|null $content
      * @param bool        $refund
      *
-     * @return Aphonix\Supports\Collection
+     * @return Collection
      */
     public function verify($content, $refund);
 
     /**
      * Echo success to server.
      *
-     * @return Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function success();
 }

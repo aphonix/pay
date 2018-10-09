@@ -99,6 +99,7 @@ class Wechat implements GatewayApplicationInterface
 
     /**
      * Pay an order
+     *
      * @param string $gateway
      * @param array $params
      * @return Response|Collection
@@ -119,6 +120,7 @@ class Wechat implements GatewayApplicationInterface
 
     /**
      * Verify data
+     *
      * @param null $content
      * @param bool $refund
      * @return Collection
@@ -146,10 +148,11 @@ class Wechat implements GatewayApplicationInterface
     /**
      * Query an order.
      *
-     * @param string|array $order
+     * @param array|string $order
      * @param bool $refund
-     *
      * @return Collection
+     * @throws GatewayException
+     * @throws InvalidSignException
      */
     public function find($order, $refund = false): Collection
     {
@@ -168,8 +171,9 @@ class Wechat implements GatewayApplicationInterface
      * Refund an order.
      *
      * @param array $order
-     *
      * @return Collection
+     * @throws GatewayException
+     * @throws InvalidSignException
      */
     public function refund($order): Collection
     {
@@ -188,9 +192,9 @@ class Wechat implements GatewayApplicationInterface
     /**
      * Cancel an order.
      *
-     * @param array $order
-     *
+     * @param array|string $order
      * @return Collection
+     * @throws GatewayException
      */
     public function cancel($order): Collection
     {
@@ -200,9 +204,10 @@ class Wechat implements GatewayApplicationInterface
     /**
      * Close an order.
      *
-     * @param string|array $order
-     *
+     * @param array|string $order
      * @return Collection
+     * @throws GatewayException
+     * @throws InvalidSignException
      */
     public function close($order)
     {
@@ -218,7 +223,9 @@ class Wechat implements GatewayApplicationInterface
     /**
      * Echo success to server.
      *
+    /**
      * @return Response
+     * @throws InvalidArgumentException
      */
     public function success(): Response
     {
@@ -233,8 +240,8 @@ class Wechat implements GatewayApplicationInterface
      * Make pay gateway.
      *
      * @param string $gateway
-     *
      * @return Response
+     * @throws InvalidGatewayException
      */
     protected function makePay($gateway)
     {
@@ -250,10 +257,10 @@ class Wechat implements GatewayApplicationInterface
     /**
      * Magic pay.
      *
-     * @param string $method
-     * @param string $params
-     *
-     * @return Response|Collection
+     * @param $method
+     * @param $params
+     * @return Collection|Response
+     * @throws InvalidGatewayException
      */
     public function __call($method, $params)
     {

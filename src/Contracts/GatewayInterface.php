@@ -2,6 +2,9 @@
 
 namespace Aphonix\Pay\Contracts;
 
+use Aphonix\Supports\Collection;
+use Symfony\Component\HttpFoundation\Response;
+
 interface GatewayInterface
 {
     /**
@@ -10,7 +13,7 @@ interface GatewayInterface
      * @param string $endpoint
      * @param array  $payload
      *
-     * @return Aphonix\Supports\Collection|Symfony\Component\HttpFoundation\Response
+     * @return Collection|Response
      */
     public function pay($endpoint, array $payload);
 }

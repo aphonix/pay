@@ -49,7 +49,8 @@ class Log
     /**
      * Make a default log instance.
      *
-     * @return \Monolog\Logger
+     * @return Logger
+     * @throws \Exception
      */
     protected static function createDefaultLogger()
     {
