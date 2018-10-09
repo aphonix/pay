@@ -30,7 +30,7 @@ class AppGateway implements GatewayInterface
      * Pay an order.
      *
      * @param string $endpoint
-     * @param array  $payload
+     * @param array $payload
      *
      * @return Response
      * @throws \Aphonix\Pay\Exceptions\InvalidConfigException
@@ -41,7 +41,7 @@ class AppGateway implements GatewayInterface
         $payload['biz_content'] = json_encode(array_merge(
             json_decode($payload['biz_content'], true),
             ['product_code' => $this->getProductCode()]
-        ));
+        ), JSON_UNESCAPED_UNICODE);
         $payload['sign'] = Support::generateSign($payload, $this->config->get('private_key'));
 
         Log::debug('Paying An App Order:', [$endpoint, $payload]);

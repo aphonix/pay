@@ -43,7 +43,7 @@ class ScanGateway implements GatewayInterface
         $payload['biz_content'] = json_encode(array_merge(
             json_decode($payload['biz_content'], true),
             ['product_code' => $this->getProductCode()]
-        ));
+        ), JSON_UNESCAPED_UNICODE);
         $payload['sign'] = Support::generateSign($payload, $this->config->get('private_key'));
 
         Log::debug('Paying A Scan Order:', [$endpoint, $payload]);

@@ -46,7 +46,7 @@ class PosGateway implements GatewayInterface
                 'product_code' => $this->getProductCode(),
                 'scene'        => 'bar_code',
             ]
-        ));
+        ), JSON_UNESCAPED_UNICODE);
         $payload['sign'] = Support::generateSign($payload, $this->config->get('private_key'));
 
         Log::debug('Paying A Pos Order:', [$endpoint, $payload]);
