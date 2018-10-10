@@ -157,6 +157,8 @@ class Wechat implements GatewayApplicationInterface
      */
     public function find($order, $refund = false): Collection
     {
+        unset($this->payload['spbill_create_ip']);
+
         $this->payload = Support::filterPayload($this->payload, $order, $this->config);
 
         Log::debug('Wechat Find An Order:', [$this->gateway, $this->payload]);
