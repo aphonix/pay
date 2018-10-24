@@ -2,6 +2,7 @@
 
 namespace Aphonix\Pay;
 
+use Aphonix\Pay\Gateways\OldAlipay;
 use Monolog\Formatter\LineFormatter;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
@@ -15,6 +16,7 @@ use Aphonix\Pay\Gateways\Wechat;
 /**
  * @method static Alipay alipay(array $config) 支付宝
  * @method static Wechat wechat(array $config) 微信
+ * @method static OldAlipay old_alipay(array $config) 老版本支付宝支付
  */
 class Pay
 {
