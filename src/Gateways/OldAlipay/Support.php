@@ -84,7 +84,7 @@ class Support
 
         if ($result['is_success'] != 'T') {
             throw new GatewayException(
-                'Get Alipay API Error:',
+                'Get Alipay API Error:' . $result['error'] ?? "",
                 $result
             );
         }
