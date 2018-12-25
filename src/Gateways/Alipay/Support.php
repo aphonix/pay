@@ -27,7 +27,7 @@ class Support
      *
      * @var string
      */
-    protected $baseUri = 'https://openapi.alipay.com/gateway.do';
+    protected $baseUri = 'https://openapi.alipay.com/gateway.do?charset=utf-8';
 
     /**
      * Bootstrap.
