@@ -58,7 +58,7 @@ class WebGateway implements GatewayInterface
      */
     protected function buildPayHtml($endpoint, $payload): Response
     {
-        $sHtml = "<form id='alipaysubmit' name='alipaysubmit' action='" . $endpoint . "?charset=utf-8' method='POST'>";
+        $sHtml = "<form id='alipaysubmit' name='alipaysubmit' action='" . $endpoint . "' method='POST'>";
         foreach ($payload as $key => $val) {
             $val = str_replace("'", '&apos;', $val);
             $sHtml .= "<input type='hidden' name='" . $key . "' value='" . $val . "'/>";
